@@ -1,0 +1,72 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import Project from '@/components/Project.astro';
+
+interface Projects {
+  section: string;
+  projects: {
+    name: string;
+    description: string;
+    link?: {
+      name: string;
+      url: string;
+    }[];
+    tags?: string[];
+  }[];
+}
+
+const projects: Projects[] = [
+];
+---
+<Layout
+  title="Projects"
+  description="b0unt9's projects"
+  keywords={['b0unt9']}
+>
+  <section>
+    <div class="container">
+      <h1>Some projects I am working on or have worked on</h1>
+      <p>I'm organizing my project list</p>
+      <section>
+        <span class="ad">
+          <ins
+            class="adsbygoogle adsbyadsense"
+            style="display: block; height: 100px"
+            data-ad-client="ca-pub-9090948645993883"
+            data-ad-slot="6067029141"
+            data-ad-format="horizontal"
+            data-full-width-responsive="false"
+          ></ins>
+          <script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </span>
+      </section>
+      {projects.map(project => (
+        <section id={project.section}>
+          <h2>{project.section} </h2>
+          {project.projects.map(project => (
+            <Project
+              link={project.link}
+              title={project.name}
+              description={project.description}
+              tags={project.tags}
+            />
+          ))}
+        </section>
+      ))}
+    </div>
+  </section>
+</Layout>
+<style lang="scss">
+  .ad {
+    display: block;
+    padding: 2rem;
+    margin: 0.5rem 0;
+    border: none;
+    background-color: transparent;
+    transition: background-color 0.5s ease-out;
+
+    @media screen and (max-width: 640px) {
+      padding: 2rem 0;
+    }
+  }
+</style>
